@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/user');
 
 
 
@@ -15,26 +15,10 @@ const mongoose = require('mongoose')
 var app = express();
 
 mongoose.connect('mongodb://127.0.0.1:27017/busify_db')
-//test the connection to the database
-const UserSchema = new mongoose.Schema({
-  name: String,
-  age: Number
-})
 
-const UserModel = mongoose.model("users", UserSchema)
-
-app.get("/getUsers", (req, res)=>{
- UserModel.find({}).then(function(users){
-  res.json(users)
- }).catch(function(err){
-  console.log(err)
- })
-})
-
-app.listen(3000, ()=>{
+app.listen(3001, ()=>{
   console.log('service is running')
 })
-
 
 
 // view engine setup
