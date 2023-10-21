@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 
 const stationSchema = new Schema ({
     latitude  : {
-        type: Double ,
+        type: Number,
         required: true
     },
     longitude : {
-        type: Double ,
+        type: Number,
         required: true
     },
     // Champ de référence à la collection "Bus"

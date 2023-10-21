@@ -7,6 +7,13 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/user');
 
+const Driver = require('./model/Driver');
+const Bus = require('./model/Bus');
+const Station = require('./model/Station');
+const User = require('./model/User');
+const School = require('./model/School');
+
+
 
 
 //link with mongo databse
@@ -14,12 +21,32 @@ const mongoose = require('mongoose')
 
 var app = express();
 
+// Connect to your MongoDB database
 mongoose.connect('mongodb://127.0.0.1:27017/busify_db')
+  .then(async () => {
+    // Create collections based on your Mongoose models
+    await Driver.createCollection();
+    await Bus.createCollection();
+    await Station.createCollection();
+    await User.createCollection();
+    await School.createCollection();
+
+    console.log('Empty collections created in MongoDB.');
+  })
+  .catch((error) => {
+    console.error('MongoDB connection error:', error);
+  });
+
+
+
+
+
+
+
 
 app.listen(3001, ()=>{
   console.log('service is running')
 })
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

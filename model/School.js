@@ -19,7 +19,7 @@ const schoolSchema = new Schema ({
         required : true
     },
     bus_num : {
-        type: int ,
+        type: Number ,
         required: true
     }
 });
